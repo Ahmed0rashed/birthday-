@@ -7,9 +7,13 @@ body {
 	-ms-transition:background-color linear 5s;
 	transition:background-color linear 5s;
 	overflow-x:hidden;
+	position: relative;
 }
+
 .container {
 	display: none;
+	position: relative;
+	z-index: 2;
 }
 .peach {
 	background-color: #FFDAB9;
@@ -22,6 +26,7 @@ body {
 	-ms-animation:peach_alive linear 8s infinite;
 	animation:peach_alive linear 8s infinite;
 }
+
 
 @-webkit-keyframes peach_alive {
 	0%{
@@ -120,10 +125,38 @@ body {
 	background-repeat: no-repeat no-repeat;
 	background-position:center 0px;
 	background-size: 50px 50px;
+	position: relative;
+	transition: all 0.3s ease;
 }
 
 .bulb-holder {
 	height: 70px;
+	position: relative;
+}
+
+/* Light rays effect */
+
+/* Sparkle particles */
+.sparkle {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background: white;
+	border-radius: 50%;
+	pointer-events: none;
+	opacity: 0;
+	animation: sparkleFloat 2s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+	0% {
+		opacity: 1;
+		transform: translate(0, 0) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(var(--sparkle-x, 0), var(--sparkle-y, -50px)) scale(0);
+	}
 }
 
 .bulb-glow-yellow {
@@ -975,7 +1008,8 @@ audio {
 	-o-transform:translate(0px,-500px);
 	-ms-transform:translate(0px,-500px);
 	transform:translate(0px,-500px);
-
+	filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+	transition: filter 0.3s ease;
 }
 .bannar-come {
 	-webkit-animation: bannar_come linear 6s;
@@ -988,6 +1022,7 @@ audio {
 	-ms-transform:translate(0px,0px);
 	animation: bannar_come linear 6s;
 	transform:translate(0px,0px);
+	filter: drop-shadow(0 5px 20px rgba(255, 215, 0, 0.5));
 }
 @-webkit-keyframes bannar_come {
 	0%{
@@ -1084,6 +1119,13 @@ audio {
 	height: 183px;
 	background-repeat: no-repeat no-repeat;
 	background-size: 100px 183px;
+	transition: all 0.3s ease;
+	filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.balloons:hover {
+	filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+	transform: scale(1.05);
 }
 .balloons h2 {
 	text-transform: uppercase;
@@ -1267,6 +1309,7 @@ audio {
 .cake-cover {
 	margin-top: 50px;
 }
+
 .message {
 	margin-top: 200px;
 	display: none;
@@ -1289,7 +1332,9 @@ audio {
         font-weight: 700;
         color: #fff;
         background-color: #466baf;
-}
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(70, 107, 175, 0.3);
+    }
     .btn-primary:hover,
     .btn-primary:focus,
     .btn-primary:active,
@@ -1298,6 +1343,8 @@ audio {
         border-color: #fff;
         color: #fff;
         background-color: #466baf;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(70, 107, 175, 0.5);
     }
 
 

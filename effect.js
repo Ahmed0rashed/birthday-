@@ -8,11 +8,42 @@ $('document').ready(function(){
 			 vw = $(window).width()/2;
 			 vh = $(window).height();
 			$('#b1,#b2,#b3,#b4').stop();
-			$('#b11').animate({top:vh*0.25, left: vw-210},500);
-			$('#b22').animate({top:vh*0.25, left: vw-110},500);
-			$('#b33').animate({top:vh*0.25, left: vw-10},500);
-			$('#b44').animate({top:vh*0.25, left: vw+90},500);
+			$('#b11').animate({top:vh*0.30, left: vw-210},500);
+			$('#b22').animate({top:vh*0.30, left: vw-110},500);
+			$('#b33').animate({top:vh*0.30, left: vw-10},500);
+			$('#b44').animate({top:vh*0.30, left: vw+90},500);
 		});
+
+	// Function to create sparkles (simplified)
+	function createSparkles(element, color) {
+		for (let i = 0; i < 3; i++) {
+			setTimeout(function() {
+				const sparkle = $('<div class="sparkle"></div>');
+				const rect = element[0].getBoundingClientRect();
+				const centerX = rect.left + rect.width / 2;
+				const centerY = rect.top + rect.height / 2;
+				
+				const angle = (Math.PI * 2 * i) / 3;
+				const distance = 30;
+				const x = Math.cos(angle) * distance;
+				const y = Math.sin(angle) * distance;
+				
+				sparkle.css({
+					left: centerX + 'px',
+					top: centerY + 'px',
+					background: color || 'white',
+					'--sparkle-x': x + 'px',
+					'--sparkle-y': y + 'px'
+				});
+				
+				$('body').append(sparkle);
+				
+				setTimeout(function() {
+					sparkle.remove();
+				}, 1500);
+			}, i * 150);
+		}
+	}
 
 	$('#turn_on').click(function(){
 		$('#bulb_yellow').addClass('bulb-glow-yellow');
@@ -29,12 +60,12 @@ $('document').ready(function(){
 	$('#play').click(function(){
 		var audio = $('.song')[0];
         audio.play();
-        $('#bulb_yellow').addClass('bulb-glow-yellow-after');
-		$('#bulb_red').addClass('bulb-glow-red-after');
-		$('#bulb_blue').addClass('bulb-glow-blue-after');
-		$('#bulb_green').addClass('bulb-glow-green-after');
-		$('#bulb_pink').addClass('bulb-glow-pink-after');
-		$('#bulb_orange').addClass('bulb-glow-orange-after');
+        $('#bulb_yellow').removeClass('bulb-glow-yellow').addClass('bulb-glow-yellow-after');
+		$('#bulb_red').removeClass('bulb-glow-red').addClass('bulb-glow-red-after');
+		$('#bulb_blue').removeClass('bulb-glow-blue').addClass('bulb-glow-blue-after');
+		$('#bulb_green').removeClass('bulb-glow-green').addClass('bulb-glow-green-after');
+		$('#bulb_pink').removeClass('bulb-glow-pink').addClass('bulb-glow-pink-after');
+		$('#bulb_orange').removeClass('bulb-glow-orange').addClass('bulb-glow-orange-after');
 		$('body').css('backgroud-color','#FFF');
 		$('body').addClass('peach-after');
 		$(this).fadeOut('slow').delay(6000).promise().done(function(){
@@ -116,10 +147,10 @@ $('document').ready(function(){
 		$('#b2').attr('id','b22')
 		$('#b3').attr('id','b33')
 		$('#b4').attr('id','b44')
-		$('#b11').animate({top:vh*0.25, left: vw-210},500);
-		$('#b22').animate({top:vh*0.25, left: vw-110},500);
-		$('#b33').animate({top:vh*0.25, left: vw-10},500);
-		$('#b44').animate({top:vh*0.25, left: vw+90},500);
+		$('#b11').animate({top:vh*0.30, left: vw-210},500);
+		$('#b22').animate({top:vh*0.30, left: vw-110},500);
+		$('#b33').animate({top:vh*0.30, left: vw-10},500);
+		$('#b44').animate({top:vh*0.30, left: vw+90},500);
 		$('.balloons').css('opacity','0.9');
 		$('.balloons h2').fadeIn(3000);
 		$(this).fadeOut('slow').delay(3000).promise().done(function(){
