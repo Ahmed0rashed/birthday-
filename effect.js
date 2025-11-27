@@ -11,7 +11,7 @@ $('document').ready(function(){
 			$('.container').fadeIn('fast');
 			$('#turn_on').fadeIn('slow');
 		}, 1000);
-	},11000); // 8 seconds total: 4s for first message + 4s for second message
+	},13000); // 8 seconds total: 4s for first message + 4s for second message
 		var vw;
 		$(window).resize(function(){
 			 vw = $(window).width()/2;
