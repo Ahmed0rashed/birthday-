@@ -1,8 +1,17 @@
 $(window).load(function(){
 	$('.loading').fadeOut('fast');
-	$('.container').fadeIn('fast');
+	// Don't show container initially - wait for dark screen
 });
 $('document').ready(function(){
+	// Automatically transition after "its so Dark" appears and fades
+	setTimeout(function(){
+		$('#darkScreen').addClass('hide');
+		setTimeout(function(){
+			$('#darkScreen').hide();
+			$('.container').fadeIn('fast');
+			$('#turn_on').fadeIn('slow');
+		}, 1000);
+	},11000); // 8 seconds total: 4s for first message + 4s for second message
 		var vw;
 		$(window).resize(function(){
 			 vw = $(window).width()/2;
